@@ -38,25 +38,6 @@
         </article>
       </a>
     </div>
-    <!--   </div> -->
-
-    <!-- <div class="detailsRow">
-    <div class="detailsColumn">
-       <div class="detailsCard">
-         <img :src="country.flag" alt="Italian Trulli">
-      </div>
-    </div>
-    <div class="detailsColumn">
-      <div class="detailsCard">
-        <h1>{{ country.name }}</h1>
-        <h2>Population: {{ country.population }}</h2>
-        <h2>Region: {{ country.region }}</h2>
-        <h2>Capital: {{ country.capital }}</h2>
-        <h2>Population: {{ country.population }}</h2>
-        <h2>Region: {{ country.region }}</h2>
-      </div>
-    </div>
-</div> -->
   </div>
 </template>
 
@@ -80,16 +61,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.google.com/specimen/Nunito+Sans");
-
-$bg: #eedfcc;
-$text: #777;
-$black: #121212;
-$white: #fff;
-$red: #e04f62;
-$border: #ebebeb;
-// $shadow: rgba(0, 0, 0, 0.2);
-
 @mixin transition($args...) {
   transition: $args;
 }
@@ -104,10 +75,7 @@ $border: #ebebeb;
 
 body {
   display: flex;
-  font-family: "Nunito+Sans", sans-serif;
   font-weight: 400;
-  color: $text;
-  background: $bg;
   font-size: 0.9375rem;
   min-height: 100vh;
   margin: 0;
@@ -142,7 +110,7 @@ body {
   text-decoration: none;
   &:hover .post-title {
     @include transition(color 0.3s ease);
-    color: $red;
+    color: #e04f62;;
   }
   &:hover .post-image {
     @include transition(opacity 0.3s ease);
@@ -169,7 +137,7 @@ body {
   letter-spacing: 0.0625rem;
   margin: 0 0 0.75rem 0;
   padding: 0 0 0.25rem 0;
-  border-bottom: 0.125rem solid $border;
+  border-bottom: 0.125rem solid #ebebeb;;
 }
 
 .post-title {
@@ -185,7 +153,7 @@ body {
   line-height: 1;
   margin: 1.125rem 0 0 0;
   padding: 1.125rem 0 0 0;
-  border-top: 0.0625rem solid $border;
+  border-top: 0.0625rem solid #ebebeb;
 }
 
 @media (max-width: 40rem) {
