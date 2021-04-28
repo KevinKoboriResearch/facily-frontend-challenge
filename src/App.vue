@@ -78,7 +78,6 @@ main {
 body {
   font-family: "Nunito Sans Regular", Helvetica, Arial;
   font-size: 14px;
-  // padding: 0% 2%;
   display: grid;
   min-height: 100vh;
   grid-template-columns: 1fr;
@@ -91,8 +90,6 @@ body {
   a {
     color: hsl(0, 0%, 0%);
   }
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
 }
 
 .app-bar {
@@ -101,19 +98,6 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-// .app-bar-item-left {
-//   font-family: "Nunito Sans Bold", Helvetica, Arial;
-//     font-size: 14px;
-//   padding: 16px 16px;
-//   font-size: 24px;
-//   cursor: pointer;
-//   a {
-//     float: right;
-//     text-align: center;
-//     // text-decoration: none;
-//     // font-size: 16px;
-//   }
-// }
 
 .app-bar-item {
   padding: 8px 16px;
@@ -141,25 +125,7 @@ body.theme--dark {
 }
 
 .theme--dark header {
-  // overflow: hidden;
   background-color: var(--dark-blue-dark-mode-elements);
 }
 
-// #app {
-//   font-family: Avenir, Helvetica, Arial, sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-
-//   a {
-//     font-weight: bold;
-//     color: black;
-//   }
-// }
-
-// #app.theme--dark {
-//   a {
-//     font-weight: bold;
-//     color: hsl(0, 0%, 100%);
-//   }
-// }
 </style>

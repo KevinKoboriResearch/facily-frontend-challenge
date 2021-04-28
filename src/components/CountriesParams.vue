@@ -188,30 +188,4 @@ select {
   background-position: right;
   background-color: var(--dark-blue-dark-mode-elements);
 }
-
-// .input-container {
-//   display: -ms-flexbox; /* IE10 */
-//   display: flex;
-//   width: 100%;
-//   margin-bottom: 15px;
-// }
-
-// .icon {
-//    margin: 18px 18px;
-//   padding: 10px;
-//   background: dodgerblue;
-//   color: white;
-//   min-width: 50px;
-//   text-align: center;
-// }
-
-// .input-field {
-//   width: 100%;
-//   padding: 10px;
-//   outline: none;
-// }
-
-// .input-field:focus {
-//   border: 2px solid dodgerblue;
-// }
 </style>

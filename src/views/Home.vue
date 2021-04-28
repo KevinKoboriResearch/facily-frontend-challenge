@@ -21,17 +21,14 @@ export default {
 <style scoped lang="scss">
 .home-params {
   grid-area: params-area;
-  // background: blue;
 }
 
 .home-grid {
   grid-area: content-area;
-  // background: grey;
 }
 
 .home-body {
   display: grid;
-  // background: yellow;//var(--transparent);
   min-height: 100vh;
   grid-template-columns: 1fr;
   grid-template-rows: 100px 1fr;

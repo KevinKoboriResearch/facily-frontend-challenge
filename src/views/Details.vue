@@ -48,9 +48,10 @@
                 <b>Border Countries: </b>
                 <span v-for="border in country.borders" :key="border">
                   <router-link
+                    :key="$route.fullPath"
                     class="routerlink"
                     :to="{ name: 'Details', params: { id: border } }"
-                    ><button>
+                    ><button @click="getCountryData(border)">
                       <p>{{ border }}</p>
                     </button></router-link
                   >
@@ -74,12 +75,21 @@ export default {
   },
   mounted() {
     const url = `https://restcountries.eu/rest/v2/alpha?codes=${this.$route.params.id}`;
-    //`https://restcountries.eu/rest/v2/name/${this.$route.params.id}`;
     axios.get(url).then((res) => {
       const data = res.data;
       console.log(data);
       if (data) this.country = data[0];
     });
+  },
+  methods: {
+    getCountryData(data) {
+      const url = `https://restcountries.eu/rest/v2/alpha?codes=${data}`;
+      axios.get(url).then((res) => {
+        const data = res.data;
+        console.log(data);
+        if (data) this.country = data[0];
+      });
+    },
   },
 };
 </script>
