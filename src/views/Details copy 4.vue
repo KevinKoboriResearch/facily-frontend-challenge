@@ -1,75 +1,82 @@
 <template>
-  <div class="row">
-    <div class="grid-item" v-for="country in countries" :key="country.nome">
-      <router-link
-        class="routerlink"
-        :to="{ name: 'Details', params: { id: country.alpha3Code } }"
-      >
-        <img class="card-image" :src="country.flag" />
-        <div class="card-content">
-          <h3>{{ country.name }}</h3>
-          <br />
-          <p><b>Population: </b>{{ country.population }}</p>
-          <br />
-          <p><b>Region: </b>{{ country.region }}</p>
-          <br />
-          <p><b>Capital: </b>{{ country.capital }}</p>
-        </div></router-link
-      >
+  <div>
+    <router-link :to="{ name: 'Home' }"
+      ><div class="button"><p>Back</p></div></router-link
+    >
+    <div class="row">
+      <!-- <div class="grid-item"> -->
+      <img class="card-image grid-item" :src="country.flag" />
+      <div class="card-content-row">
+        <div class="card-content-column">
+          <h1>{{ country.name }}</h1>
+          <p>Population: {{ country.population }}</p>
+          <p>Region: {{ country.region }}</p>
+          <h4>Capital: {{ country.capital }}</h4>
+        </div>
+        <div class="card-content-column">
+          <h1>{{ country.name }}</h1>
+        </div>
+      </div>
+      <!-- <img class="card-image" :src="country.flag" />
+      <div class="card-content">
+        <h2>{{ country.name }}</h2>
+        <p>Population: {{ country.population }}</p>
+        <p>Region: {{ country.region }}</p>
+        <h4>Capital: {{ country.capital }}</h4>
+      </div> -->
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
+import axios from "axios";
 export default {
-  computed: {
-    ...mapGetters("countries", ["getCountries"]),
-    countries() {
-      return this.$store.state.countries.countriesList;
-    },
+  data() {
+    return {
+      country: {},
+    };
+  },
+  mounted() {
+    const url = `https://restcountries.eu/rest/v2/name/${this.$route.params.id}`;
+    axios.get(url).then((res) => {
+      const data = res.data;
+      console.log(data);
+      if (data) this.country = data[0];
+    });
   },
 };
 </script>
 
 
 <style scoped lang="scss">
-.routerlink {
-  text-decoration: dotted;
-}
 .row {
-  padding: 4% 0% 0% 0%;
   display: flex;
   flex-direction: row;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   // justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
+  align-content: center;
+  align-items: center;
   // background: green;
 }
 
 .grid-item {
-  margin: 0% 0% 3% 0%;
+  // margin: 4% 8% 4% 8%;
   // height: 360px;
-  width: 250px;
-  box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem 0.3rem 0.3rem 0.3rem;
-  background: var(--white-light-mode-elements);
+  // width: 250px;
+  background: black;
   display: flex;
   flex-direction: column;
   // width: 25%;
   // flex-grow: 1;
   flex-wrap: wrap;
-  // justify-content: flex-start;
+  justify-content: space-between;
   //  justify-content: space-around;
-  align-content: space-around;
-  align-items: flex-start;
+  align-content: space-between;
+  align-items: space-between;
   .card-image {
-    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 0.3rem 0.3rem 0rem 0rem;
     // width: 400px;
     height: 180px;
     width: 100%;
@@ -77,13 +84,36 @@ export default {
     // aspect-ratio: 2;
     object-fit: cover;
   }
-  .card-content {
-    // border-radius: 0rem 0rem 0.3rem 0.3rem;
-    padding: 16% 10% 16% 10%;
+  .card-content-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    // justify-content: flex-start;
+    align-content: space-between;
+    align-items: space-between;
+    background: blue;
+    margin: 4% 8% 4% 8%;
+    padding: 6% 6% 6% 6%;
+
+    .card-content-column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      // justify-content: flex-start;
+      align-content: space-between;
+      align-items: space-between;
+      background: blue;
+      margin: 4% 8% 4% 8%;
+      padding: 6% 6% 6% 6%;
+    }
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 660px) {
   .grid-item {
     width: 100%;
     .card-image {
@@ -92,9 +122,6 @@ export default {
     .card-content {
     }
   }
-}
-.theme--dark .grid-item {
-  background-color: var(--dark-blue-dark-mode-elements);
 }
 
 // @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");

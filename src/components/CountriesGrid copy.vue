@@ -1,9 +1,10 @@
 <template>
+  <!-- <div class="grid"> -->
   <div class="row">
     <div class="grid-item" v-for="country in countries" :key="country.nome">
       <router-link
         class="routerlink"
-        :to="{ name: 'Details', params: { id: country.alpha3Code } }"
+        :to="{ name: 'Details', params: { id: country.name } }"
       >
         <img class="card-image" :src="country.flag" />
         <div class="card-content">
@@ -18,6 +19,7 @@
       >
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -39,7 +41,6 @@ export default {
   text-decoration: dotted;
 }
 .row {
-  padding: 4% 0% 0% 0%;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -57,7 +58,7 @@ export default {
   width: 250px;
   box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem 0.3rem 0.3rem 0.3rem;
-  background: var(--white-light-mode-elements);
+  background: var(--dark-blue-dark-mode-elements);
   display: flex;
   flex-direction: column;
   // width: 25%;
@@ -89,14 +90,11 @@ export default {
     .card-image {
       height: auto;
     }
-    .card-content {
-    }
   }
 }
-.theme--dark .grid-item {
-  background-color: var(--dark-blue-dark-mode-elements);
-}
 
+@media (max-width: 580px) {
+}
 // @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 
 // $bg: #eedfcc;

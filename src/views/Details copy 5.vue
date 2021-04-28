@@ -1,101 +1,141 @@
 <template>
-  <div class="row">
-    <div class="grid-item" v-for="country in countries" :key="country.nome">
-      <router-link
-        class="routerlink"
-        :to="{ name: 'Details', params: { id: country.alpha3Code } }"
-      >
-        <img class="card-image" :src="country.flag" />
-        <div class="card-content">
-          <h3>{{ country.name }}</h3>
-          <br />
-          <p><b>Population: </b>{{ country.population }}</p>
-          <br />
-          <p><b>Region: </b>{{ country.region }}</p>
-          <br />
-          <p><b>Capital: </b>{{ country.capital }}</p>
-        </div></router-link
-      >
+  <div>
+    <router-link :to="{ name: 'Home' }"
+      ><div class="button"><p>Back</p></div></router-link
+    >
+    <div class="row">
+      <!-- <div class="grid-item"> -->
+      <img class="card-image" :src="country.flag" />
+      <div class="card-content-row">
+        <div class="home-body">
+          <div class="home-params">
+            <p>Population: {{ country.population }}</p>
+            <p>Region: {{ country.region }}</p>
+            <h4>Capital: {{ country.capital }}</h4>
+            <h1>{{ country.name }}</h1>
+            <p>Population: {{ country.population }}</p>
+            <p>Region: {{ country.region }}</p>
+            <h4>Capital: {{ country.capital }}</h4>
+          </div>
+          <div class="home-grid">
+            <p>Population: {{ country.population }}</p>
+            <p>Region: {{ country.region }}</p>
+            <h4>Capital: {{ country.capital }}</h4>
+            <h1>{{ country.name }}</h1>
+            <p>Population: {{ country.population }}</p>
+            <p>Region: {{ country.region }}</p>
+            <h4>Capital: {{ country.capital }}</h4>
+          </div>
+        </div>
+        <!-- <h1>{{ country.name }}</h1>
+        <p>Population: {{ country.population }}</p>
+        <p>Region: {{ country.region }}</p>
+        <h4>Capital: {{ country.capital }}</h4>
+          <h1>{{ country.name }}</h1>
+          <p>Population: {{ country.population }}</p>
+          <p>Region: {{ country.region }}</p>
+          <h4>Capital: {{ country.capital }}</h4> -->
+      </div>
+      <!-- <img class="card-image" :src="country.flag" />
+      <div class="card-content">
+        <h2>{{ country.name }}</h2>
+        <p>Population: {{ country.population }}</p>
+        <p>Region: {{ country.region }}</p>
+        <h4>Capital: {{ country.capital }}</h4>
+      </div> -->
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
+import axios from "axios";
 export default {
-  computed: {
-    ...mapGetters("countries", ["getCountries"]),
-    countries() {
-      return this.$store.state.countries.countriesList;
-    },
+  data() {
+    return {
+      country: {},
+    };
+  },
+  mounted() {
+    const url = `https://restcountries.eu/rest/v2/name/${this.$route.params.id}`;
+    axios.get(url).then((res) => {
+      const data = res.data;
+      console.log(data);
+      if (data) this.country = data[0];
+    });
   },
 };
 </script>
 
 
 <style scoped lang="scss">
-.routerlink {
-  text-decoration: dotted;
+.card-image {
+  // width: 400px;
+  height: 250px;
+  // width: 300px;
+  // height: 50%;
+  // aspect-ratio: 2;
+  object-fit: cover;
 }
 .row {
-  padding: 4% 0% 0% 0%;
   display: flex;
   flex-direction: row;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   // justify-content: flex-start;
-  align-content: flex-start;
-  align-items: flex-start;
+  align-content: center;
+  align-items: center;
   // background: green;
 }
 
-.grid-item {
-  margin: 0% 0% 3% 0%;
-  // height: 360px;
-  width: 250px;
-  box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem 0.3rem 0.3rem 0.3rem;
-  background: var(--white-light-mode-elements);
-  display: flex;
-  flex-direction: column;
-  // width: 25%;
-  // flex-grow: 1;
-  flex-wrap: wrap;
-  // justify-content: flex-start;
-  //  justify-content: space-around;
-  align-content: space-around;
-  align-items: flex-start;
+// .grid-item {
+//   background: black;
+//   flex-wrap: wrap;
+//   align-content: center;
+//   align-items: center;
+
+//   .card-content {
+//     background: blue;
+//     margin: 4% 8% 4% 8%;
+//     padding: 6% 6% 6% 6%;
+//   }
+// }
+
+@media (max-width: 660px) {
   .card-image {
-    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 0.3rem 0.3rem 0rem 0rem;
-    // width: 400px;
-    height: 180px;
-    width: 100%;
-    // height: 50%;
-    // aspect-ratio: 2;
-    object-fit: cover;
-  }
-  .card-content {
-    // border-radius: 0rem 0rem 0.3rem 0.3rem;
-    padding: 16% 10% 16% 10%;
+    height: auto;
   }
 }
 
-@media (max-width: 580px) {
-  .grid-item {
-    width: 100%;
-    .card-image {
-      height: auto;
-    }
-    .card-content {
-    }
-  }
+.home-params {
+  grid-area: params-area;
+  background: blue;
 }
-.theme--dark .grid-item {
-  background-color: var(--dark-blue-dark-mode-elements);
+
+.home-grid {
+  grid-area: content-area;
+  background: grey;
 }
+
+.home-body {
+  display: grid;
+  background: yellow; //var(--transparent);
+  // min-height: 100vh;
+  grid-template-columns: 250px;
+  // grid-template-rows: 250px 250px;
+  grid-template-areas:
+    "params-area content-area"
+    "params-area content-area";
+}
+
+// @media (max-width: 700px) {
+//   .home-body {
+//     grid-template-columns: 1fr;
+//     grid-template-rows: 80px 1fr;
+//     grid-template-areas: "params-area" "content-area";
+//   }
+// }
 
 // @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 

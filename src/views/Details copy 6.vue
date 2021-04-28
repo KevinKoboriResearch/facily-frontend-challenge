@@ -27,35 +27,10 @@
               <br />
               <p><b>Top Level Domain: </b>{{ country.region }}</p>
               <br />
-              <p>
-                <b>Currencies: </b>
-                <span v-for="curreny in country.currencies" :key="curreny.nome">
-                  {{ curreny.name }},
-                </span>
-              </p>
+              <p><b>Currencies: </b>{{ country.currencies[0].name }}</p>
               <br />
-              <p>
-                <b>Languages: </b>
-                <span
-                  v-for="language in country.languages"
-                  :key="language.nome"
-                >
-                  {{ language.name }},
-                </span>
-              </p>
+              <p><b>Languages: </b>{{ country.languages[0].name }}</p>
               <br />
-              <p>
-                <b>Border Countries: </b>
-                <span v-for="border in country.borders" :key="border">
-                  <router-link
-                    class="routerlink"
-                    :to="{ name: 'Details', params: { id: border } }"
-                    ><button>
-                      <p>{{ border }}</p>
-                    </button></router-link
-                  >
-                </span>
-              </p>
             </div>
           </div>
         </div>
@@ -73,8 +48,7 @@ export default {
     };
   },
   mounted() {
-    const url = `https://restcountries.eu/rest/v2/alpha?codes=${this.$route.params.id}`;
-    //`https://restcountries.eu/rest/v2/name/${this.$route.params.id}`;
+    const url = `https://restcountries.eu/rest/v2/name/${this.$route.params.id}`;
     axios.get(url).then((res) => {
       const data = res.data;
       console.log(data);
@@ -153,7 +127,7 @@ export default {
 .button {
   margin: 48px 0px 0px 48px;
   display: inline-block;
-  padding: 0.75rem 0.75rem 0.7rem 2.5rem;
+  padding: 0.75rem 1.25rem;
   border-radius: 0.4rem;
   color: black;
   text-transform: uppercase;
@@ -171,11 +145,12 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(https://i.dlpng.com/static/png/6787200_preview.png)
-      no-repeat scroll;
-    background-size: 26px;
-    background-position: 0.5rem 0.3rem;
-    background-color: var(--white-light-mode-elements);
+    // background-color: hsl(0, 0%, 100%);
+      background: url(https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png)
+    no-repeat scroll;
+  background-size: 26px;
+  background-position: left;
+  background-color: var(--white-light-mode-elements);
     border-radius: 0.4rem;
     z-index: -2;
   }
@@ -186,10 +161,6 @@ export default {
     left: 0;
     width: 0%;
     height: 100%;
-    background: url(https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png)
-      no-repeat scroll;
-    background-size: 10px;
-    background-position: 0.8rem 0.6rem;
     background-color: var(--dark-blue-dark-mode-elements);
     transition: all 0.3s;
     border-radius: 0.4rem;
@@ -206,23 +177,13 @@ export default {
 .theme--dark .button {
   color: var(--white-light-mode-elements);
   &:after {
-    background: url(https://www.nicepng.com/png/full/266-2660273_expand-slideshow-white-back-icon-png.png)
-      no-repeat scroll;
-    background-size: 10px;
-    background-position: 0.8rem 0.6rem;
-    // background-position: right; //0.5rem 0.3rem;
-    // transform: rotate(180deg);
     background-color: var(--dark-blue-dark-mode-elements);
   }
   &:before {
-    background: url(https://i.dlpng.com/static/png/6787200_preview.png)
-      no-repeat scroll;
-    background-size: 26px;
-    background-position: 0.5rem 0.3rem;
     background-color: var(--white-light-mode-elements);
   }
   &:hover {
-    color: black;
+    color: var(--dark-blue-dark-mode-elements);
   }
 }
 </style>
