@@ -1,0 +1,36 @@
+@import url("https://fonts.google.com/specimen/Nunito+Sans:300,600,800");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+body {
+  font-family: "Nunito+Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color:   hsl(0, 0%, 98%)
+}
+
+body.theme--dark {
+  background-color: hsl(207, 26%, 17%)
+}
+  
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  a {
+    font-weight: bold;
+    color: black;
+  }
+}
+
+#app.theme--dark {
+  a {
+    font-weight: bold;
+    color: hsl(0, 0%, 100%)
+  }
+}

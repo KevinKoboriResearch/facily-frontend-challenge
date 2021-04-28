@@ -1,0 +1,38 @@
+  .detailsColumn {
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding: 0 2%;
+    margin-bottom: 4%;
+  }
+  
+  .detailsRow {
+    padding: 16px;
+  }
+  
+  .detailsRow:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  @media screen and (max-width: 800px) {
+  .detailsColumn {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  }
+  
+  .detailsCard {
+    border-radius: .7rem;
+    background-color: hsl(0, 0%, 98%);
+    padding: 16% 8%;
+    h2 {
+      padding: 0 0 8% 0;
+    }
+  }
+  
+  .theme--dark .detailsCard {
+    background-color: hsl(207, 26%, 17%)
+  }
